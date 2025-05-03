@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 import requests
 import altair as alt
-import plotly.express as px
 
 st.title("Zalfa's Streamlit App")
 st.caption("Before you start scrolling, lets play some calming music above!")
@@ -166,26 +165,7 @@ elif halaman == "Sales Chart":
         color='Variety:N'
     ).properties(width=700)
     st.altair_chart(chart, use_container_width=True)
-
-    ##4.4 Visualisasi Plotly
-    st.subheader("📉 Coffee Sales Bar Chart (Plotly)")
-
-    data_reset = data.reset_index().rename(columns={'index': 'Dates'})  # Reset index agar tanggal jadi kolom biasa
-
-    data_recent = data_reset.tail(10) # Ambil data 10 hari terakhir agar tidak terlalu padat
-
-    # Ubah ke format long
-    data_long_bar = data_recent.melt(id_vars='Dates', var_name='Coffee type', value_name='Sales')
-
-    fig_bar = px.bar(
-        data_long_bar,
-        x='Dates',
-        y='Sales',
-        color='Coffee type',
-        barmode='group',
-    )
-    st.plotly_chart(fig_bar)
-    st.caption("Made with 💖 using Streamlit, Pandas, Numpy, Plotly and many more.")
+    st.caption("Made with 💖 using Streamlit, Pandas, Numpy,and many more.")
 
 elif halaman == "About Us":
     st.title("👥 About Us")
